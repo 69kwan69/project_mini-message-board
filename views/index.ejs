@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="mx-auto p-4 max-w-[50rem] h-dvh flex flex-col gap-4">
+      <h1 class="text-3xl font-bold mb-4">Mini message board</h1>
+
+      <ul class="flex flex-col gap-4 flex-1 overflow-y-scroll">
+        <% if (items.length > 0) { items.forEach(({user, text, added}) => { %>
+
+        <li class="p-4 border rounded-md cursor-pointer hover:bg-gray-100">
+          <div class="mb-2 flex justify-between">
+            <span class="font-bold"><%= user %></span>
+            <span class="text-sm ml-auto text-right opacity-60"
+              ><%= added %></span
+            >
+          </div>
+          <p><%= text %></p>
+        </li>
+        <% }) } %>
+      </ul>
+
+      <form action="/new" method="post" class="flex gap-4 bg-white">
+        <input
+          class="w-full border px-4 py-2 rounded-md"
+          type="text"
+          name="message"
+          placeholder="Say something..."
+          required
+        />
+        <button class="border p-4 bg-white hover:bg-gray-100 rounded-md">
+          <img src="/send.svg" alt="Send" />
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
