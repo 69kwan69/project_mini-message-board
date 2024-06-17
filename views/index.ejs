@@ -12,12 +12,14 @@
 
       <ul class="flex flex-col gap-4 flex-1 overflow-y-scroll">
         <% if (items.length > 0) { items.forEach(({user, text, added}) => { %>
+        <% const date = new Date(added) %>
 
         <li class="p-4 border rounded-md cursor-pointer hover:bg-gray-100">
           <div class="mb-2 flex justify-between">
             <span class="font-bold"><%= user %></span>
             <span class="text-sm ml-auto text-right opacity-60"
-              ><%= added %></span
+              ><%= `${date.getHours()}:${date.getMinutes()} on
+              ${date.toLocaleDateString()}` %></span
             >
           </div>
           <p><%= text %></p>
